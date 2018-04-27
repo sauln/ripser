@@ -186,3 +186,15 @@ class TestPlotting:
         np.testing.assert_array_equal(pathcols[0].get_offsets(), modded1)
         np.testing.assert_array_equal(pathcols[1].get_offsets(), modded2)
         
+    def test_infty(self):
+        rips = Rips()
+
+        diagrams = [
+            np.array([[0,np.inf], [1,1],[2,4], [3,5]]),
+            np.array([[0.5,3], [2,4],[4,5], [10,15]])
+        ]
+
+        f, ax = plt.subplots()
+        rips.plot(diagrams, legend=True, show=False)
+
+        # Right now just make sure nothing breaks

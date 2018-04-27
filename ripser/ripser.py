@@ -175,10 +175,10 @@ class Rips(BaseEstimator):
 
         xy_range: list of numeric [xmin, xmax, ymin, ymax]
             User provided range of axes. This is useful for comparing multiple persistence diagrams.
-            
+
         labels: string or list of strings
             Legend labels for each diagram. If none are specified, we use H_0, H_1, H_2,... by default.
-        
+
         colormap: string, default is 'default'
             Any of matplotlib color palettes. Some options are 'default', 'seaborn', 'sequential'. 
             See all availble styles with
@@ -209,7 +209,8 @@ class Rips(BaseEstimator):
 
         if labels is None:
             # Provide default labels for diagrams if using self.dgm_
-            labels = ["$H_0$", "$H_1$", "$H_2$", "$H_3$", "$H_4$", "$H_5$", "$H_6$", "$H_7$", "$H_8$"]
+            labels = ["$H_0$", "$H_1$", "$H_2$", "$H_3$",
+                      "$H_4$", "$H_5$", "$H_6$", "$H_7$", "$H_8$"]
 
         if diagrams is None:
             # Allow using transformed diagrams as default
@@ -228,8 +229,9 @@ class Rips(BaseEstimator):
 
         if colors is None:
             mpl.style.use(colormap)
-            colors = cycle(['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9'])
-   
+            colors = cycle(['C0', 'C1', 'C2', 'C3', 'C4',
+                            'C5', 'C6', 'C7', 'C8', 'C9'])
+
         # Construct copy with proper type of each diagram so we can freely edit them.
         diagrams = [dgm.astype(np.float32, copy=True) for dgm in diagrams]
 
@@ -249,7 +251,7 @@ class Rips(BaseEstimator):
             ax = ax_min - buffer/2
             bx = ax_max + buffer
 
-            ay, by = ax, bx                
+            ay, by = ax, bx
         else:
             ax, bx, ay, by = xy_range
 

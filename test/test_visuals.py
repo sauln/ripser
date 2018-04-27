@@ -47,8 +47,8 @@ class TestPlotting:
         assert x_plot[1] >= np.max(diagram)
 
         # get PathCollection
-        pathcols = [child for child in ax.get_children(
-        ) if child.__class__.__name__ == "PathCollection"]
+        pathcols = [child for child in ax.get_children() 
+                    if child.__class__.__name__ == "PathCollection"]
         assert len(pathcols) == 1
 
     def test_multiple(self):
@@ -63,8 +63,8 @@ class TestPlotting:
         f, ax = plt.subplots()
         rips.plot(diagrams, show=False)
 
-        pathcols = [child for child in ax.get_children(
-        ) if child.__class__.__name__ == "PathCollection"]
+        pathcols = [child for child in ax.get_children() 
+                    if child.__class__.__name__ == "PathCollection"]
 
         assert len(pathcols) == 2
         np.testing.assert_array_equal(pathcols[0].get_offsets(), diagrams[0])
@@ -174,8 +174,8 @@ class TestPlotting:
         f, ax = plt.subplots()
         rips.plot(diagrams, lifetime=True, show=False)
 
-        pathcols = [child for child in ax.get_children(
-        ) if child.__class__.__name__ == "PathCollection"]
+        pathcols = [child for child in ax.get_children() 
+                    if child.__class__.__name__ == "PathCollection"]
 
         modded1 = diagrams[0]
         modded1[:, 1] = diagrams[0][:, 1] - diagrams[0][:, 0]

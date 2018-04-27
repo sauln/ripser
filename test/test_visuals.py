@@ -80,8 +80,8 @@ class TestPlotting:
 
         f, ax = plt.subplots()
         rips.plot(diagrams, legend=True, show=False)
-        legend = [child for child in ax.get_children(
-        ) if child.__class__.__name__ == "Legend"]
+        legend = [child for child in ax.get_children() 
+                  if child.__class__.__name__ == "Legend"]
 
         assert len(legend) == 1
 
@@ -95,8 +95,8 @@ class TestPlotting:
 
         f, ax = plt.subplots()
         rips.plot(diagrams, legend=False, show=False)
-        legend = [child for child in ax.get_children(
-        ) if child.__class__.__name__ == "Legend"]
+        legend = [child for child in ax.get_children() 
+                  if child.__class__.__name__ == "Legend"]
 
         assert len(legend) == 0
 

@@ -158,7 +158,7 @@ class Rips(BaseEstimator):
                     res = res[c_length*(dim+2)::]
         return pds
 
-    def plot(self, diagrams=None, plot_only=None, title=None, xy_range=None, labels=None, colormap='default', size=20, ax_color=np.array([0.0, 0.0, 0.0]), colors=None, diagonal=True, lifetime=False, legend=True, show=True):
+    def plot(self, diagrams=None, plot_only=None, title=None, xy_range=None, labels=None, colormap='default', size=20, ax_color=np.array([0.0, 0.0, 0.0]), colors=None, diagonal=True, lifetime=False, legend=True, show=True, jitter=None, alpha=0.5):
         """A helper function to plot persistence diagrams. 
 
         Parameters
@@ -206,6 +206,10 @@ class Rips(BaseEstimator):
             Call plt.show() after plotting. If you are using self.plot() as part of a subplot, set show=False and call plt.show() only once at the end.
 
         """
+
+        # TODO: concatenate below breaks on empty diagrams
+
+
 
         if labels is None:
             # Provide default labels for diagrams if using self.dgm_
@@ -292,8 +296,11 @@ class Rips(BaseEstimator):
         # Plot each diagram
         for dgm, color, label in zip(diagrams, colors, labels):
             # plot persistence pairs
+            if jitter:
+                dgm += np.random.random(dgm.shape) * jitter
+
             plt.scatter(dgm[:, 0], dgm[:, 1], size,
-                        color, label=label, edgecolor='none')
+                        color, label=label, edgecolor='none', alpha=alpha)
 
             plt.xlabel(xlabel)
             plt.ylabel(ylabel)
